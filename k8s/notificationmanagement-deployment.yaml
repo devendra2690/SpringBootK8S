@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notificationmanagement-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: notification
+  template:
+    metadata:
+      labels:
+        component: notification
+    spec:
+      containers:
+        - name: notificationmanagement
+          image: deven2690/notificationmanager 
+          ports:
+            - containerPort: 8581

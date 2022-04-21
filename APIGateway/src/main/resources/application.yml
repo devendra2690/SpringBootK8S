@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: APIGateway
+  port: 8080
+zuul:
+  routes:
+    BillingMgr:
+      path: /BillingMgr/**
+      url: http://localhost:8381/BillingMgr/
+    CustomerMgr:
+      path: /CustomerMgr/**
+      url: http://localhost:8081/CustomerMgr/
+    OrderMgr:
+      path: /OrderMgr/**
+      url: http://localhost:8281/OrderMgr/
+    InventoryMgr:
+      Path: /InventoryMgr/**
+      url: http://localhost:8181/InventoryMgr/

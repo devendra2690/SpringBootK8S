@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventorymanagement-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: inventory
+  template:
+    metadata:
+      labels:
+        component: inventory
+    spec:
+      containers:
+        - name: inventorymanagement
+          image: deven2690/inventorymanagement
+          ports:
+            - containerPort: 8181
+          env:
+            - name: SPRING_RABBITMQ_HOST
+              value: rabbitmq-cluster-ip-service
+            - name: SPRING_DATASOURCE_USERNAME
+              value: postgres
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://postgres-cluster-ip-service/InventoryMgr
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: update
+            - name: SPRING.JPA.DATABASE-PLATFORM
+              value: org.hibernate.dialect.PostgreSQLDialect
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pgpassword
+                  key: PGPASSWORD

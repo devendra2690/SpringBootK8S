@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notificationmanagmentawssqs-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: notificationawssqs
+  template:
+    metadata:
+      labels:
+        component: notificationawssqs
+    spec:
+      containers:
+        - name: notificationmanagmentawssqs
+          image: deven2690/notificationmanagerawssqs
+          ports:
+            - containerPort: 8681

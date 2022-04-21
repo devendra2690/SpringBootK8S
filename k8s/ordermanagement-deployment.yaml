@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ordermanagement-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: ordermanage
+  template:
+    metadata:
+      labels:
+        component: ordermanage
+    spec:
+      containers:
+        - name: ordermanagment
+          image: deven2690/ordermanagement 
+          ports:
+            - containerPort: 8281
+          env:
+            - name: SPRING_RABBITMQ_HOST
+              value: rabbitmq-cluster-ip-service
+            - name: SPRING_DATASOURCE_USERNAME
+              value: postgres
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://postgres-cluster-ip-service/InventoryMgr
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: update
+            - name: JAVAX.PERSISTENCE.SCHEMA-GENERATION.DATABASE.ACTION
+              value: create
+            - name: SPRING.JPA.DATABASE-PLATFORM
+              value: org.hibernate.dialect.PostgreSQLDialect
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pgpassword
+                  key: PGPASSWORD          

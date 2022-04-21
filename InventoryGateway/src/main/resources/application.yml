@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: spring-api-gateway
+server:
+  port: 9890
+
+  #
+    #  cloud:
+    #gateway:
+    # routes:
+    #   - id: BillingMgr
+    #     uri: http://localhost:8381/BillingMgr/
+    #     predicates:
+    #       - Path=/BillingMgr/**
+    #   - id: CustomerMgr
+    #     uri: http://localhost:8081/CustomerMgr/
+    #     predicates:
+    #       - Path=/CustomerMgr/**
+    #   - id: OrderMgr
+    #     uri: http://localhost:8281/OrderMgr/
+    #     predicates:
+    #       - Path=/OrderMgr/**
+    #   - id: InventoryMgr
+    #     uri: http://localhost:8181/InventoryMgr/
+    #     predicates:
+    ##       - Path=/InventoryMgr/**
+    #discovery:
+    # enabled: true
+    # reactive:
+    #   enabled: false
+    # blocking:
+  #   enabled: true
+

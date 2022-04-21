@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notificationmanagemetawdsns-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: notificationawdsns
+  template:
+    metadata:
+      labels:
+        component: notificationawdsns
+    spec:
+      containers:
+        - name: notificationmanagemetawdsns
+          image: deven2690/ordernotificatopnawspubsub
+          ports:
+            - containerPort: 8781
